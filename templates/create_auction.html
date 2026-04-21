@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}Create Auction - AuctionHub{% endblock %}
+
+{% block content %}
+<div class="container create-page">
+    <div class="create-card animate-in">
+        <h1><i class="fas fa-plus-circle" style="color: var(--secondary);"></i> Create New Auction</h1>
+        <p class="subtitle">List your item and start receiving bids</p>
+
+        <form method="POST" action="{{ url_for('create_auction') }}" enctype="multipart/form-data">
+            <div class="form-group">
+                <label class="form-label" for="title">Item Title *</label>
+                <input type="text" id="title" name="title" class="form-control" placeholder="e.g., Vintage Rolex Watch" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="description">Description</label>
+                <textarea id="description" name="description" class="form-control" placeholder="Describe your item in detail..."></textarea>
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="category">Category</label>
+                <select id="category" name="category" class="form-control">
+                    <option value="General">General</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Art">Art</option>
+                    <option value="Jewelry">Jewelry</option>
+                    <option value="Vehicles">Vehicles</option>
+                    <option value="Collectibles">Collectibles</option>
+                    <option value="Fashion">Fashion</option>
+                    <option value="Home & Garden">Home & Garden</option>
+                    <option value="Sports">Sports</option>
+                    <option value="Books">Books</option>
+                    <option value="Antiques">Antiques</option>
+                </select>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-lg);">
+                <div class="form-group">
+                    <label class="form-label" for="starting_price">Starting Price ($) *</label>
+                    <input type="number" id="starting_price" name="starting_price" class="form-control" placeholder="10.00" min="1" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="duration_hours">Duration (Hours) *</label>
+                    <select id="duration_hours" name="duration_hours" class="form-control">
+                        <option value="6">6 Hours</option>
+                        <option value="12">12 Hours</option>
+                        <option value="24" selected>24 Hours (1 Day)</option>
+                        <option value="48">48 Hours (2 Days)</option>
+                        <option value="72">72 Hours (3 Days)</option>
+                        <option value="168">168 Hours (7 Days)</option>
+                        <option value="336">336 Hours (14 Days)</option>
+                        <option value="720">720 Hours (30 Days)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Item Image (Optional)</label>
+                <label class="file-upload" for="image">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>Click to upload an image<br><span style="color: var(--text-muted);">PNG, JPG, GIF up to 16MB</span></p>
+                    <input type="file" id="image" name="image" accept="image/*" style="display: none;">
+                </label>
+                <p id="file-name" style="color: var(--text-secondary); font-size: var(--font-size-sm); margin-top: var(--space-sm);"></p>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; justify-content: center;">
+                <i class="fas fa-rocket"></i> Launch Auction
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+{% block title %}Dashboard - AuctionHub{% endblock %}
+
+{% block content %}
+<div class="container dashboard">
+    <div class="dashboard-header">
+        <h1><i class="fas fa-tachometer-alt" style="color: var(--primary);"></i> Dashboard</h1>
+        <p>Welcome back, <strong>{{ current_user.full_name or current_user.username }}</strong></p>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="dashboard-stats">
+        <div class="dash-stat animate-in">
+            <div class="dash-stat-icon purple"><i class="fas fa-list"></i></div>
+            <div>
+                <div class="dash-stat-number">{{ active_listings }}</div>
+                <div class="dash-stat-label">Active Listings</div>
+            </div>
+        </div>
+        <div class="dash-stat animate-in">
+            <div class="dash-stat-icon blue"><i class="fas fa-gavel"></i></div>
+            <div>
+                <div class="dash-stat-number">{{ total_bids }}</div>
+                <div class="dash-stat-label">Total Bids Placed</div>
+            </div>
+        </div>
+        <div class="dash-stat animate-in">
+            <div class="dash-stat-icon green"><i class="fas fa-trophy"></i></div>
+            <div>
+                <div class="dash-stat-number">{{ total_won }}</div>
+                <div class="dash-stat-label">Auctions Won</div>
+            </div>
+        </div>
+        <div class="dash-stat animate-in">
+            <div class="dash-stat-icon red"><i class="fas fa-times-circle"></i></div>
+            <div>
+                <div class="dash-stat-number">{{ total_lost }}</div>
+                <div class="dash-stat-label">Auctions Lost</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+        <button class="tab active" data-tab="my-auctions"><i class="fas fa-store"></i> My Auctions</button>
+        <button class="tab" data-tab="my-bids"><i class="fas fa-gavel"></i> My Bids</button>
+        <button class="tab" data-tab="won"><i class="fas fa-trophy"></i> Won</button>
+        <button class="tab" data-tab="lost"><i class="fas fa-times-circle"></i> Lost</button>
+    </div>
+
+    <!-- My Auctions Tab -->
+    <div class="tab-panel active" id="my-auctions">
+        {% if my_auctions %}
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr><th>Item</th><th>Starting</th><th>Current</th><th>Bids</th><th>Status</th><th>Action</th></tr>
+                </thead>
+                <tbody>
+                    {% for auction in my_auctions %}
+                    <tr>
+                        <td><strong>{{ auction.item.title }}</strong></td>
+                        <td>${{ "%.2f"|format(auction.starting_price) }}</td>
+                        <td style="color: var(--secondary); font-weight: 700;">${{ "%.2f"|format(auction.current_price) }}</td>
+                        <td>{{ auction.bid_count }}</td>
+                        <td>
+                            <span class="status-dot {{ 'active' if auction.status == 'active' else 'ended' }}"></span>
+                            {{ auction.status|capitalize }}
+                        </td>
+                        <td><a href="{{ url_for('auction_detail', auction_id=auction.id) }}" class="btn btn-outline btn-sm">View</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="empty-state">
+            <i class="fas fa-store"></i>
+            <h3>No Auctions Yet</h3>
+            <p>Start selling by creating your first auction.</p>
+            <a href="{{ url_for('create_auction') }}" class="btn btn-primary" style="margin-top: var(--space-md);">Create Auction</a>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- My Bids Tab -->
+    <div class="tab-panel" id="my-bids">
+        {% if my_bids %}
+        <div class="table-container">
+            <table>
+                <thead><tr><th>Auction</th><th>Bid Amount</th><th>Time</th><th>Status</th><th>Action</th></tr></thead>
+                <tbody>
+                    {% for bid in my_bids %}
+                    <tr>
+                        <td>{{ bid.auction.item.title }}</td>
+                        <td style="color: var(--secondary); font-weight: 700;">${{ "%.2f"|format(bid.amount) }}</td>
+                        <td>{{ bid.timestamp|timeago }}</td>
+                        <td>
+                            <span class="status-dot {{ 'active' if bid.auction.status == 'active' else 'ended' }}"></span>
+                            {{ bid.auction.status|capitalize }}
+                        </td>
+                        <td><a href="{{ url_for('auction_detail', auction_id=bid.auction_id) }}" class="btn btn-outline btn-sm">View</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="empty-state">
+            <i class="fas fa-gavel"></i>
+            <h3>No Bids Placed</h3>
+            <p>Browse auctions and place your first bid!</p>
+            <a href="{{ url_for('auctions') }}" class="btn btn-primary" style="margin-top: var(--space-md);">Browse Auctions</a>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Won Tab -->
+    <div class="tab-panel" id="won">
+        {% if won_auctions %}
+        <div class="auction-grid">
+            {% for auction in won_auctions %}
+            <div class="auction-card">
+                <div class="auction-card-body">
+                    <div style="margin-bottom: var(--space-md);"><span class="winner-badge"><i class="fas fa-crown"></i> Winner!</span></div>
+                    <h3 class="auction-card-title">{{ auction.item.title }}</h3>
+                    <div class="auction-card-meta">
+                        <div class="price-display">
+                            <div class="price-label">Final Price</div>
+                            <div class="price-value">${{ "%.2f"|format(auction.current_price) }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="empty-state">
+            <i class="fas fa-trophy"></i>
+            <h3>No Wins Yet</h3>
+            <p>Keep bidding to win auctions!</p>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Lost Tab -->
+    <div class="tab-panel" id="lost">
+        {% if lost_auctions %}
+        <div class="table-container">
+            <table>
+                <thead><tr><th>Item</th><th>Final Price</th><th>Winner</th></tr></thead>
+                <tbody>
+                    {% for auction in lost_auctions %}
+                    <tr>
+                        <td>{{ auction.item.title }}</td>
+                        <td>${{ "%.2f"|format(auction.current_price) }}</td>
+                        <td>{{ auction.winner.username if auction.winner else 'N/A' }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="empty-state">
+            <i class="fas fa-heart"></i>
+            <h3>No Lost Auctions</h3>
+            <p>Great job - you haven't lost any auctions yet!</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

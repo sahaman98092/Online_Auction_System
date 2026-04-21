@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% block title %}Analytics - AuctionHub{% endblock %}
+
+{% block content %}
+<div class="container analytics">
+    <div class="section-header">
+        <h1 class="section-title"><i class="fas fa-chart-bar" style="color: var(--primary);"></i> Analytics Dashboard</h1>
+    </div>
+
+    <!-- Overview Stats -->
+    <div class="dashboard-stats" style="margin-bottom: var(--space-2xl);">
+        <div class="dash-stat animate-in">
+            <div class="dash-stat-icon purple"><i class="fas fa-users"></i></div>
+            <div><div class="dash-stat-number">{{ total_users }}</div><div class="dash-stat-label">Total Users</div></div>
+        </div>
+        <div class="dash-stat animate-in">
+            <div class="dash-stat-icon blue"><i class="fas fa-tags"></i></div>
+            <div><div class="dash-stat-number">{{ total_auctions }}</div><div class="dash-stat-label">Total Auctions</div></div>
+        </div>
+        <div class="dash-stat animate-in">
+            <div class="dash-stat-icon green"><i class="fas fa-gavel"></i></div>
+            <div><div class="dash-stat-number">{{ total_bids }}</div><div class="dash-stat-label">Total Bids</div></div>
+        </div>
+        <div class="dash-stat animate-in">
+            <div class="dash-stat-icon red"><i class="fas fa-dollar-sign"></i></div>
+            <div><div class="dash-stat-number">${{ "%.0f"|format(total_revenue) }}</div><div class="dash-stat-label">Total Revenue</div></div>
+        </div>
+    </div>
+
+    <div class="analytics-grid">
+        <!-- Top Bidders -->
+        <div class="chart-card animate-in">
+            <h3><i class="fas fa-trophy" style="color: var(--warning);"></i> Top Bidders</h3>
+            {% if top_bidders %}
+            <div class="bar-chart">
+                {% for bidder in top_bidders %}
+                <div class="bar-item">
+                    <div class="bar-label">
+                        <span>{{ bidder[0] }}</span>
+                        <span>{{ bidder[1] }} bids</span>
+                    </div>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="width: {{ (bidder[1] / top_bidders[0][1] * 100) if top_bidders[0][1] > 0 else 0 }}%;"></div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="empty-state"><p>No bidding data yet</p></div>
+            {% endif %}
+        </div>
+
+        <!-- Most Active Auctions -->
+        <div class="chart-card animate-in">
+            <h3><i class="fas fa-fire" style="color: var(--accent);"></i> Most Active Auctions</h3>
+            {% if active_auctions %}
+            <div class="bar-chart">
+                {% for auction in active_auctions %}
+                <div class="bar-item">
+                    <div class="bar-label">
+                        <span>{{ auction[1][:25] }}{% if auction[1]|length > 25 %}...{% endif %}</span>
+                        <span>{{ auction[3] }} bids</span>
+                    </div>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="width: {{ (auction[3] / active_auctions[0][3] * 100) if active_auctions[0][3] > 0 else 0 }}%; background: linear-gradient(90deg, var(--accent), var(--warning));"></div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="empty-state"><p>No auction data yet</p></div>
+            {% endif %}
+        </div>
+
+        <!-- Category Distribution -->
+        <div class="chart-card animate-in">
+            <h3><i class="fas fa-chart-pie" style="color: var(--secondary);"></i> Category Distribution</h3>
+            {% if category_stats %}
+            <div class="bar-chart">
+                {% for stat in category_stats %}
+                <div class="bar-item">
+                    <div class="bar-label">
+                        <span>{{ stat[0] or 'General' }}</span>
+                        <span>{{ stat[1] }} auctions · Avg ${{ "%.0f"|format(stat[2]) }}</span>
+                    </div>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="width: {{ (stat[1] / category_stats[0][1] * 100) if category_stats[0][1] > 0 else 0 }}%; background: linear-gradient(90deg, var(--secondary), var(--secondary-light));"></div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="empty-state"><p>No category data yet</p></div>
+            {% endif %}
+        </div>
+
+        <!-- Auction Status -->
+        <div class="chart-card animate-in">
+            <h3><i class="fas fa-signal" style="color: var(--info);"></i> Auction Status Overview</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-lg); margin-top: var(--space-lg);">
+                <div class="glass-card" style="text-align: center;">
+                    <div style="font-size: var(--font-size-3xl); font-weight: 800; color: var(--success);">{{ active_count }}</div>
+                    <div style="color: var(--text-secondary); font-size: var(--font-size-sm);">Active</div>
+                </div>
+                <div class="glass-card" style="text-align: center;">
+                    <div style="font-size: var(--font-size-3xl); font-weight: 800; color: var(--danger);">{{ ended_count }}</div>
+                    <div style="color: var(--text-secondary); font-size: var(--font-size-sm);">Ended</div>
+                </div>
+            </div>
+            <div style="margin-top: var(--space-xl);">
+                <div class="bar-item">
+                    <div class="bar-label"><span>Revenue Generated</span><span>${{ "%.2f"|format(total_revenue) }}</span></div>
+                    <div class="bar-track" style="height: 12px;">
+                        <div class="bar-fill" style="width: {{ (ended_count / total_auctions * 100) if total_auctions > 0 else 0 }}%; background: linear-gradient(90deg, var(--success), var(--secondary));"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

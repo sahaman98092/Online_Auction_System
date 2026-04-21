@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% block title %}ETL Pipeline - AuctionHub{% endblock %}
+
+{% block content %}
+<div class="container etl-page">
+    <div class="section-header">
+        <h1 class="section-title"><i class="fas fa-database" style="color: var(--secondary);"></i> ETL Pipeline</h1>
+    </div>
+    <p style="color: var(--text-secondary); margin-bottom: var(--space-2xl);">
+        Extract, Transform, and Load data into the auction system. Load CSV/JSON data files and clean/validate records.
+    </p>
+
+    <!-- ETL Steps -->
+    <div class="etl-steps">
+        <div class="etl-step animate-in">
+            <div class="etl-step-icon"><i class="fas fa-download"></i></div>
+            <h3>Extract</h3>
+            <p>Read user, item, and bid data from CSV and JSON files in the data/ directory.</p>
+        </div>
+        <div class="etl-step animate-in" style="animation-delay: 0.1s;">
+            <div class="etl-step-icon"><i class="fas fa-cogs"></i></div>
+            <h3>Transform</h3>
+            <p>Clean invalid bids, format timestamps, validate emails, remove duplicates.</p>
+        </div>
+        <div class="etl-step animate-in" style="animation-delay: 0.2s;">
+            <div class="etl-step-icon"><i class="fas fa-database"></i></div>
+            <h3>Load</h3>
+            <p>Store processed data into structured database tables with proper relationships.</p>
+        </div>
+    </div>
+
+    <!-- Actions -->
+    <div style="display: flex; gap: var(--space-md); margin-bottom: var(--space-xl); flex-wrap: wrap;">
+        <button class="btn btn-primary" id="run-etl-btn">
+            <i class="fas fa-play"></i> Run Full ETL Pipeline
+        </button>
+        <button class="btn btn-secondary" id="load-csv-btn">
+            <i class="fas fa-file-csv"></i> Load from CSV/JSON
+        </button>
+    </div>
+
+    <!-- Output Console -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title"><i class="fas fa-terminal"></i> Pipeline Output</h3>
+            <button class="btn btn-outline btn-sm" id="clear-output"><i class="fas fa-eraser"></i> Clear</button>
+        </div>
+        <div class="card-body" style="padding: 0;">
+            <div class="etl-output" id="etl-output">Welcome to the ETL Pipeline Console.
+Click "Run Full ETL Pipeline" to start processing data.
+
+Data files expected in data/ directory:
+  - users.csv
+  - items.csv
+  - bids.json
+
+Pipeline Steps:
+  1. EXTRACT  → Read raw data from files
+  2. TRANSFORM → Clean, validate, and format data
+  3. LOAD → Insert into database tables
+</div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.getElementById('run-etl-btn')?.addEventListener('click', async function() {
+    const output = document.getElementById('etl-output');
+    const btn = this;
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span> Running...';
+    output.textContent = '> Starting ETL Pipeline...\n';
+
+    try {
+        const res = await fetch('/api/etl/run', { method: 'POST' });
+        const data = await res.json();
+        if (data.success) {
+            output.textContent += `\n✅ ETL Pipeline Complete!\n`;
+            output.textContent += `   Extracted: ${data.results.extracted} records\n`;
+            output.textContent += `   Transformed: ${data.results.transformed} records\n`;
+            output.textContent += `   Loaded: ${data.results.loaded} records\n`;
+            output.textContent += `   Invalid: ${data.results.invalid_records} records\n`;
+            if (data.results.errors.length > 0) {
+                output.textContent += `\n⚠️ Warnings:\n`;
+                data.results.errors.forEach(e => output.textContent += `   - ${e}\n`);
+            }
+        } else {
+            output.textContent += `\n❌ Error: ${data.message}\n`;
+        }
+    } catch (err) {
+        output.textContent += `\n❌ Network Error: ${err.message}\n`;
+    }
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fas fa-play"></i> Run Full ETL Pipeline';
+});
+
+document.getElementById('load-csv-btn')?.addEventListener('click', async function() {
+    const output = document.getElementById('etl-output');
+    const btn = this;
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span> Loading...';
+    output.textContent += '\n> Loading data from CSV/JSON files...\n';
+
+    try {
+        const res = await fetch('/api/etl/load-csv', { method: 'POST' });
+        const data = await res.json();
+        if (data.success) {
+            output.textContent += `✅ Data loaded successfully!\n`;
+            output.textContent += `   Records: ${data.results.loaded}\n`;
+        } else {
+            output.textContent += `❌ Error: ${data.message}\n`;
+        }
+    } catch (err) {
+        output.textContent += `❌ Error: ${err.message}\n`;
+    }
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fas fa-file-csv"></i> Load from CSV/JSON';
+});
+
+document.getElementById('clear-output')?.addEventListener('click', function() {
+    document.getElementById('etl-output').textContent = '> Console cleared.\n';
+});
+</script>
+{% endblock %}

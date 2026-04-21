@@ -1,0 +1,723 @@
+[
+  {
+    "auction_id": 7,
+    "bidder_id": 29,
+    "amount": 1069.86,
+    "timestamp": "2026-04-01T02:00:05.950112+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 26,
+    "bidder_id": 19,
+    "amount": 556.16,
+    "timestamp": "2026-04-01T05:00:05.950112+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 8,
+    "bidder_id": 24,
+    "amount": 3295.63,
+    "timestamp": "2026-03-28T21:00:05.950112+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 30,
+    "bidder_id": 38,
+    "amount": 16.65,
+    "timestamp": "2026-04-20T21:00:05.950112+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 26,
+    "bidder_id": 22,
+    "amount": 46.45,
+    "timestamp": "2026-03-25T23:00:05.950112+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 28,
+    "bidder_id": 16,
+    "amount": 1193.67,
+    "timestamp": "2026-03-22T14:00:05.950112+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 12,
+    "bidder_id": 3,
+    "amount": 4886.64,
+    "timestamp": "2026-04-13T02:00:05.950112+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 18,
+    "bidder_id": 4,
+    "amount": 5242.82,
+    "timestamp": "2026-03-27T00:00:05.950112+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 26,
+    "bidder_id": 2,
+    "amount": 3726.33,
+    "timestamp": "2026-04-14T21:00:05.950112+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 29,
+    "bidder_id": 8,
+    "amount": 214.72,
+    "timestamp": "2026-04-17T15:00:05.950112+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 8,
+    "bidder_id": 4,
+    "amount": 1728.75,
+    "timestamp": "2026-04-12T05:00:05.950112+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 22,
+    "bidder_id": 29,
+    "amount": 5600.06,
+    "timestamp": "2026-04-19T23:00:05.950112+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 30,
+    "bidder_id": 36,
+    "amount": 3545.53,
+    "timestamp": "2026-04-13T19:00:05.950112+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 23,
+    "bidder_id": 40,
+    "amount": 4855.85,
+    "timestamp": "2026-04-06T12:00:05.950112+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 24,
+    "bidder_id": 26,
+    "amount": 5413.0,
+    "timestamp": "2026-04-09T00:00:05.950112+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 29,
+    "bidder_id": 15,
+    "amount": 838.28,
+    "timestamp": "2026-04-12T09:00:05.950112+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 1,
+    "bidder_id": 44,
+    "amount": 1479.64,
+    "timestamp": "2026-04-02T16:00:05.950112+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 8,
+    "bidder_id": 35,
+    "amount": 4432.44,
+    "timestamp": "2026-04-12T02:00:05.950112+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 26,
+    "bidder_id": 41,
+    "amount": 5353.69,
+    "timestamp": "2026-04-10T07:00:05.950112+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 1,
+    "bidder_id": 48,
+    "amount": 2109.57,
+    "timestamp": "2026-04-17T06:00:05.951131+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 12,
+    "bidder_id": 40,
+    "amount": 1536.3,
+    "timestamp": "2026-04-19T04:00:05.951131+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 15,
+    "bidder_id": 14,
+    "amount": 4859.26,
+    "timestamp": "2026-03-29T19:00:05.951131+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 7,
+    "bidder_id": 27,
+    "amount": 2842.91,
+    "timestamp": "2026-04-11T20:00:05.951131+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 19,
+    "bidder_id": 32,
+    "amount": 3386.66,
+    "timestamp": "2026-04-18T04:00:05.951131+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 23,
+    "bidder_id": 39,
+    "amount": 2369.01,
+    "timestamp": "2026-04-17T20:00:05.951131+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 7,
+    "bidder_id": 22,
+    "amount": 4953.78,
+    "timestamp": "2026-03-22T12:00:05.951131+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 6,
+    "bidder_id": 28,
+    "amount": 4171.15,
+    "timestamp": "2026-03-22T22:00:05.951131+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 26,
+    "bidder_id": 28,
+    "amount": 2112.29,
+    "timestamp": "2026-04-20T13:00:05.951131+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 13,
+    "bidder_id": 41,
+    "amount": 1582.11,
+    "timestamp": "2026-03-26T00:00:05.951131+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 30,
+    "bidder_id": 37,
+    "amount": 3652.7,
+    "timestamp": "2026-03-28T18:00:05.951131+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 27,
+    "bidder_id": 32,
+    "amount": 2964.46,
+    "timestamp": "2026-04-04T16:00:05.951131+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 26,
+    "bidder_id": 12,
+    "amount": 1392.84,
+    "timestamp": "2026-04-05T04:00:05.951131+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 17,
+    "bidder_id": 17,
+    "amount": 1603.24,
+    "timestamp": "2026-03-24T11:00:05.951131+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 23,
+    "bidder_id": 37,
+    "amount": 1952.0,
+    "timestamp": "2026-03-23T07:00:05.951131+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 21,
+    "bidder_id": 44,
+    "amount": 2493.07,
+    "timestamp": "2026-03-30T05:00:05.951131+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 23,
+    "bidder_id": 11,
+    "amount": 1945.15,
+    "timestamp": "2026-04-15T09:00:05.951131+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 5,
+    "bidder_id": 34,
+    "amount": 3511.6,
+    "timestamp": "2026-04-05T17:00:05.951131+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 1,
+    "bidder_id": 9,
+    "amount": 1671.59,
+    "timestamp": "2026-03-24T06:00:05.951131+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 20,
+    "bidder_id": 36,
+    "amount": 102.76,
+    "timestamp": "2026-04-02T13:00:05.951131+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 7,
+    "bidder_id": 41,
+    "amount": 3725.84,
+    "timestamp": "2026-04-04T01:00:05.951131+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 1,
+    "bidder_id": 11,
+    "amount": 1751.66,
+    "timestamp": "2026-03-29T23:00:05.951131+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 3,
+    "bidder_id": 7,
+    "amount": 3843.41,
+    "timestamp": "2026-03-27T13:00:05.953286+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 28,
+    "bidder_id": 49,
+    "amount": 1240.41,
+    "timestamp": "2026-04-10T04:00:05.953286+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 5,
+    "bidder_id": 32,
+    "amount": 3384.73,
+    "timestamp": "2026-04-18T14:00:05.953286+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 16,
+    "bidder_id": 16,
+    "amount": 5282.69,
+    "timestamp": "2026-03-29T08:00:05.953286+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 24,
+    "bidder_id": 11,
+    "amount": 5413.93,
+    "timestamp": "2026-04-13T13:00:05.953286+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 30,
+    "bidder_id": 35,
+    "amount": 2218.93,
+    "timestamp": "2026-03-27T15:00:05.953286+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 14,
+    "bidder_id": 18,
+    "amount": 2651.99,
+    "timestamp": "2026-03-24T00:00:05.953286+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 4,
+    "bidder_id": 33,
+    "amount": 110.6,
+    "timestamp": "2026-04-05T13:00:05.953286+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 24,
+    "bidder_id": 8,
+    "amount": 4806.63,
+    "timestamp": "2026-04-20T17:00:05.953286+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 12,
+    "bidder_id": 22,
+    "amount": 1399.18,
+    "timestamp": "2026-04-16T03:00:05.953286+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 13,
+    "bidder_id": 8,
+    "amount": 3661.81,
+    "timestamp": "2026-03-23T08:00:05.953286+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 28,
+    "bidder_id": 47,
+    "amount": 2564.83,
+    "timestamp": "2026-03-23T17:00:05.953286+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 19,
+    "bidder_id": 4,
+    "amount": 148.65,
+    "timestamp": "2026-04-04T21:00:05.953286+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 28,
+    "bidder_id": 30,
+    "amount": 5642.99,
+    "timestamp": "2026-04-19T00:00:05.953286+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 5,
+    "bidder_id": 24,
+    "amount": 1844.46,
+    "timestamp": "2026-04-19T08:00:05.953286+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 20,
+    "bidder_id": 21,
+    "amount": 1015.07,
+    "timestamp": "2026-04-18T15:00:05.953286+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 25,
+    "bidder_id": 42,
+    "amount": 5333.4,
+    "timestamp": "2026-04-13T19:00:05.953286+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 24,
+    "bidder_id": 50,
+    "amount": 3688.55,
+    "timestamp": "2026-04-19T23:00:05.953286+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 2,
+    "bidder_id": 26,
+    "amount": 4223.43,
+    "timestamp": "2026-04-10T11:00:05.953286+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 16,
+    "bidder_id": 39,
+    "amount": 1713.98,
+    "timestamp": "2026-04-18T15:00:05.953286+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 25,
+    "bidder_id": 24,
+    "amount": 5034.63,
+    "timestamp": "2026-03-28T05:00:05.953286+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 13,
+    "bidder_id": 20,
+    "amount": 3710.36,
+    "timestamp": "2026-04-05T19:00:05.954353+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 12,
+    "bidder_id": 23,
+    "amount": 165.34,
+    "timestamp": "2026-03-29T11:00:05.954353+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 19,
+    "bidder_id": 25,
+    "amount": 937.56,
+    "timestamp": "2026-03-30T11:00:05.954353+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 17,
+    "bidder_id": 42,
+    "amount": 4411.84,
+    "timestamp": "2026-03-25T04:00:05.954353+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 1,
+    "bidder_id": 8,
+    "amount": 4019.33,
+    "timestamp": "2026-04-17T02:00:05.954353+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 4,
+    "bidder_id": 6,
+    "amount": 296.83,
+    "timestamp": "2026-04-07T06:00:05.954353+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 23,
+    "bidder_id": 40,
+    "amount": 4342.31,
+    "timestamp": "2026-03-24T23:00:05.954353+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 30,
+    "bidder_id": 19,
+    "amount": 4194.18,
+    "timestamp": "2026-03-24T10:00:05.954353+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 26,
+    "bidder_id": 37,
+    "amount": 945.78,
+    "timestamp": "2026-04-12T21:00:05.954353+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 21,
+    "bidder_id": 1,
+    "amount": 902.95,
+    "timestamp": "2026-04-19T11:00:05.954353+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 16,
+    "bidder_id": 25,
+    "amount": 3490.11,
+    "timestamp": "2026-04-06T02:00:05.954353+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 5,
+    "bidder_id": 22,
+    "amount": 3688.71,
+    "timestamp": "2026-03-26T17:00:05.954353+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 19,
+    "bidder_id": 37,
+    "amount": 651.96,
+    "timestamp": "2026-03-25T04:00:05.954353+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 15,
+    "bidder_id": 49,
+    "amount": 1870.35,
+    "timestamp": "2026-04-16T21:00:05.954353+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 16,
+    "bidder_id": 26,
+    "amount": 4435.73,
+    "timestamp": "2026-04-18T08:00:05.954353+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 30,
+    "bidder_id": 30,
+    "amount": 3284.58,
+    "timestamp": "2026-03-31T04:00:05.954353+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 4,
+    "bidder_id": 34,
+    "amount": 1316.86,
+    "timestamp": "2026-04-03T08:00:05.954970+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 24,
+    "bidder_id": 5,
+    "amount": 3844.97,
+    "timestamp": "2026-04-05T10:00:05.954970+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 2,
+    "bidder_id": 49,
+    "amount": 4889.74,
+    "timestamp": "2026-04-01T09:00:05.954970+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 12,
+    "bidder_id": 50,
+    "amount": 2945.76,
+    "timestamp": "2026-03-23T14:00:05.954970+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 11,
+    "bidder_id": 37,
+    "amount": 3647.77,
+    "timestamp": "2026-04-13T23:00:05.954970+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 11,
+    "bidder_id": 44,
+    "amount": 1436.95,
+    "timestamp": "2026-04-08T07:00:05.954970+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 29,
+    "bidder_id": 50,
+    "amount": 3467.8,
+    "timestamp": "2026-04-13T23:00:05.954970+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 26,
+    "bidder_id": 34,
+    "amount": 1441.42,
+    "timestamp": "2026-03-26T12:00:05.954970+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 18,
+    "bidder_id": 45,
+    "amount": 4721.54,
+    "timestamp": "2026-03-27T12:00:05.954970+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 29,
+    "bidder_id": 36,
+    "amount": 1030.1,
+    "timestamp": "2026-04-18T16:00:05.954970+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 3,
+    "bidder_id": 48,
+    "amount": 680.28,
+    "timestamp": "2026-03-28T10:00:05.954970+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 30,
+    "bidder_id": 32,
+    "amount": 4662.43,
+    "timestamp": "2026-04-08T10:00:05.954970+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 25,
+    "bidder_id": 35,
+    "amount": 619.38,
+    "timestamp": "2026-03-22T13:00:05.954970+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 16,
+    "bidder_id": 25,
+    "amount": 1894.98,
+    "timestamp": "2026-04-05T05:00:05.954970+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 12,
+    "bidder_id": 41,
+    "amount": 4538.65,
+    "timestamp": "2026-03-24T19:00:05.954970+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 20,
+    "bidder_id": 19,
+    "amount": 2512.26,
+    "timestamp": "2026-04-17T06:00:05.954970+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 12,
+    "bidder_id": 25,
+    "amount": 2891.74,
+    "timestamp": "2026-03-31T10:00:05.954970+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 16,
+    "bidder_id": 39,
+    "amount": 511.62,
+    "timestamp": "2026-04-14T19:00:05.954970+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 26,
+    "bidder_id": 5,
+    "amount": 4090.91,
+    "timestamp": "2026-04-10T15:00:05.954970+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 15,
+    "bidder_id": 12,
+    "amount": 4019.81,
+    "timestamp": "2026-04-05T03:00:05.954970+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 7,
+    "bidder_id": 46,
+    "amount": 3559.81,
+    "timestamp": "2026-04-04T07:00:05.954970+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 5,
+    "bidder_id": 29,
+    "amount": 518.86,
+    "timestamp": "2026-04-05T20:00:05.954970+00:00",
+    "is_valid": true
+  },
+  {
+    "auction_id": 1,
+    "bidder_id": 1,
+    "amount": -50,
+    "timestamp": "invalid",
+    "is_valid": false
+  },
+  {
+    "auction_id": 2,
+    "bidder_id": 2,
+    "amount": 0,
+    "timestamp": "2024-01-01T00:00:00",
+    "is_valid": false
+  },
+  {
+    "auction_id": 999,
+    "bidder_id": 999,
+    "amount": null,
+    "timestamp": null,
+    "is_valid": false
+  }
+]

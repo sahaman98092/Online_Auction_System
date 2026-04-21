@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+{% block title %}{{ auction.item.title }} - AuctionHub{% endblock %}
+
+{% block content %}
+<div class="container auction-detail">
+    <div class="auction-detail-grid">
+        <!-- Left: Image -->
+        <div>
+            <div class="auction-image-container">
+                {% if auction.item.image_url and auction.item.image_url != '/static/images/default-item.jpg' %}
+                <img src="{{ auction.item.image_url }}" alt="{{ auction.item.title }}">
+                {% else %}
+                <i class="fas fa-gem"></i>
+                {% endif %}
+            </div>
+            <!-- Bid History -->
+            <div class="bid-history" style="margin-top: var(--space-xl);">
+                <div class="card">
+                    <div class="card-header"><h3 class="card-title"><i class="fas fa-history"></i> Bid History</h3></div>
+                    <div class="card-body" style="padding: 0;">
+                        {% if bids %}
+                        {% for bid in bids %}
+                        <div class="bid-item">
+                            <div>
+                                <div class="bid-user"><i class="fas fa-user"></i> {{ bid.bidder.username }}{% if loop.first %} <span class="winner-badge" style="margin-left: 8px;"><i class="fas fa-crown"></i> Highest</span>{% endif %}</div>
+                                <div class="bid-time">{{ bid.timestamp|timeago }}</div>
+                            </div>
+                            <div class="bid-amount">${{ "%.2f"|format(bid.amount) }}</div>
+                        </div>
+                        {% endfor %}
+                        {% else %}
+                        <div class="empty-state" style="padding: var(--space-xl);"><p>No bids yet. Be the first!</p></div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right: Info + Bidding -->
+        <div class="auction-info">
+            <div style="display: flex; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                <span class="auction-badge {{ 'badge-active' if auction.status == 'active' else 'badge-ended' }}" style="position:static;">
+                    <span class="status-dot {{ auction.status }}"></span> {{ auction.status|capitalize }}
+                </span>
+                {% if auction.item.category %}
+                <span class="badge-category" style="position:static;">{{ auction.item.category }}</span>
+                {% endif %}
+            </div>
+
+            <h1>{{ auction.item.title }}</h1>
+            <p style="color: var(--text-muted); font-size: var(--font-size-sm); margin-bottom: var(--space-md);">
+                Listed by <strong>{{ auction.item.seller.username }}</strong> · {{ auction.bid_count }} bids
+            </p>
+            <p class="description">{{ auction.item.description }}</p>
+
+            <!-- Price Section -->
+            <div class="price-section">
+                <div class="price-label">Current Price</div>
+                <div class="current-price" id="current-price">${{ "%.2f"|format(auction.current_price) }}</div>
+                <div class="starting-price">Started at ${{ "%.2f"|format(auction.starting_price) }}</div>
+            </div>
+
+            <!-- Countdown Timer -->
+            {% if auction.status == 'active' and time_left %}
+            <div class="countdown-timer" id="countdown-timer" data-seconds="{{ time_left.total_seconds }}">
+                <div class="countdown-unit">
+                    <div class="countdown-number" id="cd-days">{{ time_left.days }}</div>
+                    <div class="countdown-label">Days</div>
+                </div>
+                <div class="countdown-unit">
+                    <div class="countdown-number" id="cd-hours">{{ time_left.hours }}</div>
+                    <div class="countdown-label">Hours</div>
+                </div>
+                <div class="countdown-unit">
+                    <div class="countdown-number" id="cd-minutes">{{ time_left.minutes }}</div>
+                    <div class="countdown-label">Minutes</div>
+                </div>
+                <div class="countdown-unit">
+                    <div class="countdown-number" id="cd-seconds">{{ time_left.seconds }}</div>
+                    <div class="countdown-label">Seconds</div>
+                </div>
+            </div>
+            {% elif auction.status == 'ended' %}
+            <div class="glass-card" style="text-align: center; margin: var(--space-lg) 0;">
+                <h3 style="color: var(--danger);"><i class="fas fa-clock"></i> Auction Ended</h3>
+                {% if auction.winner %}
+                <p style="margin-top: var(--space-sm);">Winner: <strong style="color: var(--warning);">{{ auction.winner.username }}</strong></p>
+                {% else %}
+                <p style="margin-top: var(--space-sm); color: var(--text-secondary);">No winning bid</p>
+                {% endif %}
+            </div>
+            {% endif %}
+
+            <!-- Bid Form -->
+            {% if auction.status == 'active' %}
+            {% if current_user.is_authenticated %}
+                {% if current_user.id != auction.item.seller_id %}
+                <div class="bid-form">
+                    <h3 style="margin-bottom: var(--space-md);"><i class="fas fa-gavel"></i> Place Your Bid</h3>
+                    <div class="bid-input-group">
+                        <input type="number" id="bid-amount" class="form-control" placeholder="Enter bid amount"
+                               min="{{ auction.current_price + 1 }}" step="0.01"
+                               value="{{ (auction.current_price * 1.05)|round(2) }}">
+                        <button class="btn btn-primary" id="place-bid-btn" data-auction="{{ auction.id }}">
+                            <i class="fas fa-gavel"></i> Place Bid
+                        </button>
+                    </div>
+                    <p style="color: var(--text-muted); font-size: var(--font-size-xs); margin-top: var(--space-sm);">
+                        {% set min_inc = auction.current_price * 0.01 %}
+                        Minimum bid: ${{ "%.2f"|format(auction.current_price + (1 if min_inc < 1 else min_inc)) }}
+                    </p>
+                    <div id="bid-feedback" style="margin-top: var(--space-md);"></div>
+                </div>
+                {% else %}
+                <div class="glass-card" style="text-align: center;"><p style="color: var(--text-secondary);">This is your auction listing.</p></div>
+                {% endif %}
+            {% else %}
+            <div class="glass-card" style="text-align:center;">
+                <p style="margin-bottom: var(--space-md);">Log in to place a bid</p>
+                <a href="{{ url_for('login') }}" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i> Login to Bid</a>
+            </div>
+            {% endif %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Auction-specific JS is handled by app.js
+const AUCTION_ID = {{ auction.id }};
+</script>
+{% endblock %}

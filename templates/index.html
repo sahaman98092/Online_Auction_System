@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+{% block title %}AuctionHub - Online Auction Platform{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1 class="hero-title animate-in">
+            Discover & Bid on<br>
+            <span class="gradient-text">Extraordinary Items</span>
+        </h1>
+        <p class="hero-subtitle animate-in">
+            Join thousands of bidders on our trusted auction platform. Find rare collectibles, 
+            vintage items, and exclusive deals.
+        </p>
+        <div class="hero-actions animate-in">
+            <a href="{{ url_for('auctions') }}" class="btn btn-primary btn-lg">
+                <i class="fas fa-search"></i> Browse Auctions
+            </a>
+            {% if current_user.is_authenticated %}
+            <a href="{{ url_for('create_auction') }}" class="btn btn-outline btn-lg">
+                <i class="fas fa-plus"></i> Sell an Item
+            </a>
+            {% else %}
+            <a href="{{ url_for('register') }}" class="btn btn-outline btn-lg">
+                <i class="fas fa-user-plus"></i> Join Free
+            </a>
+            {% endif %}
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <div class="stats-bar">
+        <div class="stat-card animate-in">
+            <div class="stat-number" id="stat-auctions">{{ active_auctions|length }}</div>
+            <div class="stat-label">Active Auctions</div>
+        </div>
+        <div class="stat-card animate-in">
+            <div class="stat-number">{{ ended_auctions|length }}+</div>
+            <div class="stat-label">Items Sold</div>
+        </div>
+        <div class="stat-card animate-in">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">Secure Bidding</div>
+        </div>
+    </div>
+
+    <!-- Active Auctions -->
+    {% if active_auctions %}
+    <section style="margin-bottom: var(--space-3xl);">
+        <div class="section-header">
+            <h2 class="section-title"><i class="fas fa-fire" style="color: var(--accent);"></i> Live Auctions</h2>
+            <a href="{{ url_for('auctions') }}" class="btn btn-outline btn-sm">View All <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="auction-grid">
+            {% for auction in active_auctions %}
+            <a href="{{ url_for('auction_detail', auction_id=auction.id) }}" class="auction-card animate-in" style="animation-delay: {{ loop.index * 0.1 }}s; text-decoration:none; color:inherit;">
+                <div class="auction-card-image">
+                    {% if auction.item.image_url and auction.item.image_url != '/static/images/default-item.jpg' %}
+                    <img src="{{ auction.item.image_url }}" alt="{{ auction.item.title }}">
+                    {% else %}
+                    <i class="fas fa-gem"></i>
+                    {% endif %}
+                    <span class="auction-badge badge-active"><span class="status-dot active"></span> Live</span>
+                    {% if auction.item.category %}
+                    <span class="badge-category">{{ auction.item.category }}</span>
+                    {% endif %}
+                </div>
+                <div class="auction-card-body">
+                    <h3 class="auction-card-title">{{ auction.item.title }}</h3>
+                    <p class="auction-card-desc">{{ auction.item.description[:100] }}...</p>
+                    <div class="auction-card-meta">
+                        <div class="price-display">
+                            <div class="price-label">Current Bid</div>
+                            <div class="price-value">${{ "%.2f"|format(auction.current_price) }}</div>
+                        </div>
+                        <div class="time-display">
+                            <div class="time-label">Ends in</div>
+                            <div class="time-value auction-timer" data-end="{{ auction.end_time.isoformat() }}">Loading...</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="auction-card-footer">
+                    <span class="bid-count"><i class="fas fa-gavel"></i> {{ auction.bid_count }} bids</span>
+                    <span class="btn btn-primary btn-sm">Bid Now</span>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </section>
+    {% else %}
+    <div class="empty-state">
+        <i class="fas fa-box-open"></i>
+        <h3>No Active Auctions Yet</h3>
+        <p>Be the first to list an item for auction!</p>
+        {% if current_user.is_authenticated %}
+        <a href="{{ url_for('create_auction') }}" class="btn btn-primary" style="margin-top: var(--space-md);">Create Auction</a>
+        {% endif %}
+    </div>
+    {% endif %}
+
+    <!-- Features Section -->
+    <section style="margin: var(--space-3xl) 0;">
+        <h2 class="section-title" style="text-align: center; margin-bottom: var(--space-2xl);">Why Choose AuctionHub?</h2>
+        <div class="stats-bar" style="max-width: 100%;">
+            <div class="stat-card">
+                <div style="font-size: 2rem; color: var(--primary-light); margin-bottom: var(--space-md);"><i class="fas fa-shield-halved"></i></div>
+                <h3 style="margin-bottom: var(--space-sm);">Secure & Trusted</h3>
+                <p style="color: var(--text-secondary); font-size: var(--font-size-sm);">All transactions are secured with advanced encryption</p>
+            </div>
+            <div class="stat-card">
+                <div style="font-size: 2rem; color: var(--secondary); margin-bottom: var(--space-md);"><i class="fas fa-bolt"></i></div>
+                <h3 style="margin-bottom: var(--space-sm);">Real-Time Bidding</h3>
+                <p style="color: var(--text-secondary); font-size: var(--font-size-sm);">Bid in real-time with live price updates</p>
+            </div>
+            <div class="stat-card">
+                <div style="font-size: 2rem; color: var(--accent); margin-bottom: var(--space-md);"><i class="fas fa-chart-line"></i></div>
+                <h3 style="margin-bottom: var(--space-sm);">Data Analytics</h3>
+                <p style="color: var(--text-secondary); font-size: var(--font-size-sm);">Powered by ETL pipeline and Pandas analytics</p>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

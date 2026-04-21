@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% block title %}Browse Auctions - AuctionHub{% endblock %}
+
+{% block content %}
+<div class="container" style="padding-top: var(--space-2xl); padding-bottom: var(--space-2xl);">
+    <div class="section-header">
+        <h1 class="section-title"><i class="fas fa-tags" style="color: var(--primary);"></i> Browse Auctions</h1>
+        {% if current_user.is_authenticated %}
+        <a href="{{ url_for('create_auction') }}" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> New Auction</a>
+        {% endif %}
+    </div>
+
+    <!-- Filter Bar -->
+    <div class="filter-bar">
+        <div class="search-input">
+            <i class="fas fa-search"></i>
+            <form method="GET" action="{{ url_for('auctions') }}" style="display:contents;">
+                <input type="text" name="search" class="form-control" placeholder="Search auctions..." value="{{ search }}" style="padding-left: 2.5rem;">
+            </form>
+        </div>
+        <a href="{{ url_for('auctions') }}" class="filter-btn {{ 'active' if not current_category }}">All</a>
+        {% for cat in categories %}
+        <a href="{{ url_for('auctions', category=cat) }}" class="filter-btn {{ 'active' if current_category == cat }}">{{ cat }}</a>
+        {% endfor %}
+    </div>
+
+    <!-- Auction Grid -->
+    {% if auctions.items %}
+    <div class="auction-grid">
+        {% for auction in auctions.items %}
+        <a href="{{ url_for('auction_detail', auction_id=auction.id) }}" class="auction-card animate-in" style="animation-delay: {{ loop.index * 0.05 }}s; text-decoration:none; color:inherit;">
+            <div class="auction-card-image">
+                {% if auction.item.image_url and auction.item.image_url != '/static/images/default-item.jpg' %}
+                <img src="{{ auction.item.image_url }}" alt="{{ auction.item.title }}">
+                {% else %}
+                <i class="fas fa-gem"></i>
+                {% endif %}
+                <span class="auction-badge badge-active"><span class="status-dot active"></span> Live</span>
+                {% if auction.item.category %}
+                <span class="badge-category">{{ auction.item.category }}</span>
+                {% endif %}
+            </div>
+            <div class="auction-card-body">
+                <h3 class="auction-card-title">{{ auction.item.title }}</h3>
+                <p class="auction-card-desc">{{ auction.item.description[:80] }}...</p>
+                <div class="auction-card-meta">
+                    <div class="price-display">
+                        <div class="price-label">Current Bid</div>
+                        <div class="price-value">${{ "%.2f"|format(auction.current_price) }}</div>
+                    </div>
+                    <div class="time-display">
+                        <div class="time-label">Ends in</div>
+                        <div class="time-value auction-timer" data-end="{{ auction.end_time.isoformat() }}">Loading...</div>
+                    </div>
+                </div>
+            </div>
+            <div class="auction-card-footer">
+                <span class="bid-count"><i class="fas fa-gavel"></i> {{ auction.bid_count }} bids</span>
+                <span class="btn btn-primary btn-sm">Bid Now</span>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    {% if auctions.pages > 1 %}
+    <div class="pagination">
+        {% if auctions.has_prev %}
+        <a href="{{ url_for('auctions', page=auctions.prev_num, category=current_category, search=search) }}" class="page-link"><i class="fas fa-chevron-left"></i></a>
+        {% endif %}
+        {% for p in auctions.iter_pages(left_edge=1, right_edge=1, left_current=2, right_current=2) %}
+            {% if p %}
+            <a href="{{ url_for('auctions', page=p, category=current_category, search=search) }}" class="page-link {{ 'active' if p == auctions.page }}">{{ p }}</a>
+            {% else %}
+            <span class="page-link disabled">...</span>
+            {% endif %}
+        {% endfor %}
+        {% if auctions.has_next %}
+        <a href="{{ url_for('auctions', page=auctions.next_num, category=current_category, search=search) }}" class="page-link"><i class="fas fa-chevron-right"></i></a>
+        {% endif %}
+    </div>
+    {% endif %}
+    {% else %}
+    <div class="empty-state">
+        <i class="fas fa-search"></i>
+        <h3>No Auctions Found</h3>
+        <p>{% if search %}No results for "{{ search }}". Try a different search.{% else %}No active auctions available right now.{% endif %}</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
